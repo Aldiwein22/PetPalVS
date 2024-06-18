@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "QtBuild",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "c:/Qt"
+                }
+            ],
+            "externalConsole": false,
+            "miDebuggerPath": "C:\\Qt\\Tools\\mingw1120_64\\bin\\gdb.exe",
+            "visualizerFile": "c:\\Users\\Aldiwein\\AppData\\Roaming\\Code\\User\\workspaceStorage\\61a2450ace08c7340e37a9857a582266\\tonka3000.qtvsctools\\qt.natvis.xml"
+        },
+        {
+            "type": "cmake",
+            "request": "launch",
+            "name": "Debug portfile(s)",
+            "cmakeDebugType": "external",
+            "pipeName": "\\\\.\\pipe\\vcpkg_ext_portfile_dbg",
+            "preLaunchTask": "Debug vcpkg commands"
+        },
+        {
+            "name": "(Windows) Starten",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "Programmnamen eingeben, z. B. \"${workspaceFolder}/a.exe\"",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "externalTerminal",
+            "visualizerFile": "c:\\Users\\Aldiwein\\AppData\\Roaming\\Code\\User\\workspaceStorage\\61a2450ace08c7340e37a9857a582266\\tonka3000.qtvsctools\\qt.natvis.xml"
+        }
+    ]
+}
