@@ -22,6 +22,12 @@ set(PROJECT_SOURCES
         PetPal.h
         PetPal.cpp
         PetPal.ui
+        MainWindow.h
+        MainWindow.cpp
+        MainWindow.ui
+        MainScreen.h
+        MainScreen.cpp
+        MainScreen.ui
         main.cpp
 )
 

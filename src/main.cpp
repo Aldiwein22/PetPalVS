@@ -1,3 +1,4 @@
+/*
 #include "PetPal.h"
 
 #include <QApplication>
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
 }
 
 
-/*
+
 #include <QApplication>
 #include "GUI.h"
 
@@ -25,3 +26,15 @@ int main(int argc, char *argv[]) {
     return app.exec();
 }
 */
+
+#include <QApplication>
+#include "MainWindow.h"
+
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    MainWindow mainWindow;
+    mainWindow.show();
+
+    return app.exec();
+}
