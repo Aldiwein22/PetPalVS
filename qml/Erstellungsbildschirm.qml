@@ -9,10 +9,16 @@ Page {
         TextField {
             id: petName
             placeholderText: "Name des Haustiers"
+            focus: true
+            Keys.onPressed: {
+                if (event.key === Qt.Key_Return) {
+                    erstelleNeuesHaustier(petName.text, petType.currentText)
+                }
+            }
         }
         ComboBox {
             id: petType
-            model: ["Hund", "Katze", "Vogel"]
+            model: ["Hund", "Katze", "Vogel", "Fisch"]
         }
         Button {
             text: "Erstellen"
@@ -20,6 +26,11 @@ Page {
         }
     }
     function erstelleNeuesHaustier(name, type) {
+        if (name === "" || type === "") {
+            petName.focus = true
+            return
+        }
+
         pet = {
             "name": name,
             "type": type,
@@ -27,6 +38,7 @@ Page {
             "happiness": 100,
             "health": 100
         }
+
         stackView.push("Interaktionsbildschirm.qml")
     }
 }

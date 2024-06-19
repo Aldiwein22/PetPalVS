@@ -1,4 +1,4 @@
-QT += core gui widgets network quick
+QT += core gui widgets network quick xml
 
 CONFIG += c++17
 
@@ -20,7 +20,11 @@ RESOURCES += \\
     Erstellungsbildschirm.qml \\
     Hauptbildschirm.qml \\
     Interaktionsbildschirm.qml \\
-    WeatherAPI.qml
+    WeatherAPI.qml \\
+    Anpassungsbildschirm.qm \\
+    Bildungsschirm.qml \\
+    EmotionIndicator.qml \\
+    MinispielBildschirm.qml
 
 # Add additional include directories
 INCLUDEPATH += include

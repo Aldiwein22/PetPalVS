@@ -13,7 +13,7 @@ set(QT_DIR "C:/Qt/6.7.1/mingw_64/lib/cmake/Qt6")
 
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Network)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Network Xml)
 find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
 include_directories(include)
@@ -30,7 +30,7 @@ qt_add_executable(${PROJECT_NAME} WIN32 ${SRCS}
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Quick Qt6::Xml)
 
 include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME}
@@ -52,6 +52,10 @@ qt6_add_qml_module(${PROJECT_NAME}
         QML_FILES qml/Erstellungsbildschirm.qml
         QML_FILES qml/Interaktionsbildschirm.qml
         QML_FILES qml/WeatherAPI.qml
+        QML_FILES qml/Anpassungsbildschirm.qml
+        QML_FILES qml/Bildungsschirm.qml
+        QML_FILES qml/EmotionIndicator.qml
+        QML_FILES qml/MinispielBildschirm.qml
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
