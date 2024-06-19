@@ -14,7 +14,62 @@
    <string>PetPal - Hauptbildschirm</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-    <!-- Hier können Widgets hinzugefügt werden, um die Statuswerte des Haustieres anzuzeigen -->
+    <item>
+     <widget class="QLabel" name="nameLabel">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="speciesLabel">
+      <property name="text">
+       <string>Art</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="hungerLabel">
+      <property name="text">
+       <string>Hunger</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="happinessLabel">
+      <property name="text">
+       <string>Glück</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="healthLabel">
+      <property name="text">
+       <string>Gesundheit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="feedButton">
+      <property name="text">
+       <string>Füttern</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="petButton">
+      <property name="text">
+       <string>Streicheln</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="trainButton">
+      <property name="text">
+       <string>Trainieren</string>
+      </property>
+     </widget>
+    </item>
   </layout>
  </widget>
  <resources/>

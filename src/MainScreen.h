@@ -7,7 +7,8 @@ namespace Ui {
 class MainScreen;
 }
 
-class MainScreen : public QWidget {
+class MainScreen : public QWidget
+{
     Q_OBJECT
 
 public:

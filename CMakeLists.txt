@@ -28,6 +28,8 @@ set(PROJECT_SOURCES
         MainScreen.h
         MainScreen.cpp
         MainScreen.ui
+        Pet.h
+        Pet.cpp
         main.cpp
 )
 
@@ -39,3 +41,4 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets) # Qt5 Shared Library
 
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)

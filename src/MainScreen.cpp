@@ -2,10 +2,13 @@
 #include "ui_MainScreen.h"
 
 MainScreen::MainScreen(QWidget *parent) :
-    QWidget(parent), ui(new Ui::MainScreen) {
+    QWidget(parent),
+    ui(new Ui::MainScreen)
+{
     ui->setupUi(this);
 }
 
-MainScreen::~MainScreen() {
+MainScreen::~MainScreen()
+{
     delete ui;
 }
