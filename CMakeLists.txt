@@ -7,7 +7,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set Qt paths
 set(Vulkan_INCLUDE_DIR "C:/VulkanSDK/1.3.283.0/Include")
 set(CMAKE_PREFIX_PATH "C:/Qt/Tools/CMake_64/bin")
 set(QT_DIR "C:/Qt/6.7.1/mingw_64/lib/cmake/Qt6")
@@ -21,20 +20,6 @@ include_directories(include)
 aux_source_directory(./src SRCS)
 
 set(PROJECT_SOURCES
-        Haustier.h
-        Haustier.cpp
-        GUI.h
-        GUI.cpp
-        PetPal.h
-        PetPal.cpp
-        MainWindow.h
-        MainWindow.cpp
-        MainScreen.h
-        MainScreen.cpp
-        Pet.h
-        Pet.cpp
-        WeatherAPI.h
-        WeatherAPI.cpp
         main.cpp
 )
 

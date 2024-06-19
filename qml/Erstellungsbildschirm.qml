@@ -1,29 +1,24 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts
+import QtQuick.Layouts 1.15
 
 Page {
     id: erstellungsBildschirm
-
     ColumnLayout {
         anchors.centerIn: parent
-
         TextField {
             id: petName
             placeholderText: "Name des Haustiers"
         }
-
         ComboBox {
             id: petType
             model: ["Hund", "Katze", "Vogel"]
         }
-
         Button {
             text: "Erstellen"
             onClicked: erstelleNeuesHaustier(petName.text, petType.currentText)
         }
     }
-
     function erstelleNeuesHaustier(name, type) {
         pet = {
             "name": name,

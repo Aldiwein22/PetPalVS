@@ -8,24 +8,11 @@ TARGET = PetPal
 
 # Add sources
 SOURCES += \\
-    src/Haustier.cpp \\
-    src/GUI.cpp \\
-    src/PetPal.cpp \\
-    src/MainWindow.cpp \\
-    src/MainScreen.cpp \\
-    src/Pet.cpp \\
-    src/WeatherAPI.cpp \\
     src/main.cpp
 
 # Add headers
 HEADERS += \\
-    include/Haustier.h \\
-    include/GUI.h \\
-    include/PetPal.h \\
-    include/MainWindow.h \\
-    include/MainScreen.h \\
-    include/Pet.h \\
-    include/WeatherAPI.h
+    include/
 
 # Add qml files
 RESOURCES += \\
