@@ -1,12 +1,17 @@
 cmake_minimum_required(VERSION 3.5)
 project(PetPal LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_PREFIX_PATH "c:/Qt/6.7.1/mingw_64")
+# set(CMAKE_PREFIX_PATH "c:/Qt/6.7.1/mingw_64")
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Set Qt paths
+set(Vulkan_INCLUDE_DIR "C:/VulkanSDK/1.3.283.0/Include")
+set(CMAKE_PREFIX_PATH "C:/Qt/Tools/CMake_64/bin")
+set(QT_DIR "C:/Qt/6.7.1/mingw_64/lib/cmake/Qt6")
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
