@@ -5,6 +5,10 @@
 #include <QStackedWidget>
 #include <QLabel>
 #include "WeatherAPI.h"
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QGridLayout>
+#include <QMessageBox>
 #include "Pet.h"
 
 class GUI : public QWidget {
@@ -14,8 +18,7 @@ public:
     GUI(QWidget *parent = nullptr);
     ~GUI();
 
-private slots:
-    void onWeatherDataReceived(const QString &weather);  // Methode deklariert
+public slots:
     void erstelleNeuesHaustier();
     void ladeGespeichertesHaustier();
     void fuettern();
@@ -24,6 +27,10 @@ private slots:
     void speichern();
     void anpassen();
     void kommunizieren();
+    
+
+private slots:
+    void onWeatherDataReceived(const QString &weather);
 
 private:
     void setupMainMenu();
@@ -40,6 +47,7 @@ private:
     QLabel *petHungerLabel;
     QLabel *petHappinessLabel;
     QLabel *petHealthLabel;
+    QPushButton *fuetternButton;
 };
 
 #endif // GUI_H

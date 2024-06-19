@@ -1,15 +1,13 @@
 #include "GUI.h"
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QGridLayout>
-#include <QDebug>
 
 GUI::GUI(QWidget *parent) : QWidget(parent), currentPet(nullptr) {
     stackedWidget = new QStackedWidget(this);
     setupMainMenu();
     setupPetScreen();
+
     weatherAPI = new WeatherAPI(this);
     connect(weatherAPI, &WeatherAPI::weatherDataReceived, this, &GUI::onWeatherDataReceived);
+
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(stackedWidget);
     setLayout(mainLayout);
@@ -22,55 +20,45 @@ GUI::~GUI() {
 
 void GUI::setupMainMenu() {
     mainMenu = new QWidget(this);
+    mainMenu->resize(800, 600);
+    mainMenu->setFixedSize(800, 600);
+
     QVBoxLayout *layout = new QVBoxLayout(mainMenu);
-    QPushButton *neuesHaustierButton = new QPushButton("Neues Haustier erstellen", mainMenu);
+
+    QPushButton *neuesHaustierButton = new QPushButton("Neues Haustier erstellen, du Neger", mainMenu);
+
     QPushButton *gespeichertesHaustierButton = new QPushButton("Gespeichertes Haustier laden", mainMenu);
+
     layout->addWidget(neuesHaustierButton);
     layout->addWidget(gespeichertesHaustierButton);
+
     connect(neuesHaustierButton, &QPushButton::clicked, this, &GUI::erstelleNeuesHaustier);
     connect(gespeichertesHaustierButton, &QPushButton::clicked, this, &GUI::ladeGespeichertesHaustier);
+
     stackedWidget->addWidget(mainMenu);
-    qDebug() << "MainMenu setup complete.";
 }
 
 void GUI::setupPetScreen() {
     petScreen = new QWidget(this);
+    petScreen->resize(800, 600);
+    petScreen->setFixedSize(800, 600);
+
     QGridLayout *layout = new QGridLayout(petScreen);
-    QPushButton *fuetternButton = new QPushButton("Füttern", petScreen);
-    QPushButton *streichelnButton = new QPushButton("Streicheln", petScreen);
-    QPushButton *trainierenButton = new QPushButton("Trainieren", petScreen);
-    QPushButton *speichernButton = new QPushButton("Speichern", petScreen);
-    QPushButton *anpassenButton = new QPushButton("Anpassen", petScreen);
-    QPushButton *kommunizierenButton = new QPushButton("Kommunizieren", petScreen);
-    QPushButton *wetterButton = new QPushButton("Wetter abrufen", petScreen);
+
     petNameLabel = new QLabel("Name: ", petScreen);
     petSpeciesLabel = new QLabel("Art: ", petScreen);
     petHungerLabel = new QLabel("Hunger: ", petScreen);
     petHappinessLabel = new QLabel("Glücklichkeit: ", petScreen);
     petHealthLabel = new QLabel("Gesundheit: ", petScreen);
-    layout->addWidget(petNameLabel, 0, 0, 1, 2);
-    layout->addWidget(petSpeciesLabel, 1, 0, 1, 2);
-    layout->addWidget(petHungerLabel, 2, 0, 1, 2);
-    layout->addWidget(petHappinessLabel, 3, 0, 1, 2);
-    layout->addWidget(petHealthLabel, 4, 0, 1, 2);
-    layout->addWidget(fuetternButton, 5, 0);
-    layout->addWidget(streichelnButton, 5, 1);
-    layout->addWidget(trainierenButton, 6, 0);
-    layout->addWidget(speichernButton, 6, 1);
-    layout->addWidget(anpassenButton, 7, 0);
-    layout->addWidget(kommunizierenButton, 7, 1);
-    layout->addWidget(wetterButton, 8, 0, 1, 2);
-    connect(fuetternButton, &QPushButton::clicked, this, &GUI::fuettern);
-    connect(streichelnButton, &QPushButton::clicked, this, &GUI::streicheln);
-    connect(trainierenButton, &QPushButton::clicked, this, &GUI::trainieren);
-    connect(speichernButton, &QPushButton::clicked, this, &GUI::speichern);
-    connect(anpassenButton, &QPushButton::clicked, this, &GUI::anpassen);
-    connect(kommunizierenButton, &QPushButton::clicked, this, &GUI::kommunizieren);
+
+    QPushButton *wetterButton = new QPushButton("Wetter abrufen", petScreen);
+
     connect(wetterButton, &QPushButton::clicked, [this]() {
         weatherAPI->getWeatherData("Berlin");
     });
+
+    petScreen->setLayout(layout);
     stackedWidget->addWidget(petScreen);
-    qDebug() << "PetScreen setup complete.";
 }
 
 void GUI::onWeatherDataReceived(const QString &weather) {
@@ -85,21 +73,36 @@ void GUI::onWeatherDataReceived(const QString &weather) {
 void GUI::erstelleNeuesHaustier() {
     delete currentPet;
     currentPet = new Pet("Fluffy", "Hund");
-    qDebug() << "Neues Haustier erstellt.";
     updatePetStatus();
+
     stackedWidget->setCurrentWidget(petScreen);
-    qDebug() << "Switched to petScreen.";
 }
 
 void GUI::ladeGespeichertesHaustier() {
-    // Logik zum Laden eines gespeicherten Haustiers
-    qDebug() << "Gespeichertes Haustier geladen.";
     updatePetStatus();
+
+    if(stackedWidget == nullptr) {
+        qDebug() << "stackedWidget is not initialized";
+        return;
+    }
+
+    if(petScreen == nullptr) {
+        qDebug() << "petScreen is not initialized";
+        
+        return;
+    }
+
+    if(!stackedWidget->indexOf(petScreen)) {
+        qDebug() << "petScreen is not added to stackedWidget";
+        return;
+    }
+
     stackedWidget->setCurrentWidget(petScreen);
-    qDebug() << "Switched to petScreen.";
 }
 
 void GUI::fuettern() {
+    QMessageBox::information(this, "Füttern", "Haustier gefüttert.");
+
     if (currentPet) {
         currentPet->feed();
         qDebug() << "Haustier gefüttert.";
@@ -108,6 +111,7 @@ void GUI::fuettern() {
 }
 
 void GUI::streicheln() {
+    QMessageBox::information(this, "Streicheln", "Haustier gestreichelt.");
     if (currentPet) {
         currentPet->pet();
         qDebug() << "Haustier gestreichelt.";
@@ -116,6 +120,7 @@ void GUI::streicheln() {
 }
 
 void GUI::trainieren() {
+    QMessageBox::information(this, "Trainieren", "Haustier trainiert.");
     if (currentPet) {
         currentPet->train();
         qDebug() << "Haustier trainiert.";
@@ -124,6 +129,7 @@ void GUI::trainieren() {
 }
 
 void GUI::speichern() {
+    QMessageBox::information(this, "Speichern", "Haustierstatus gespeichert.");
     if (currentPet) {
         currentPet->saveStatus();
         qDebug() << "Haustierstatus gespeichert.";
@@ -131,13 +137,11 @@ void GUI::speichern() {
 }
 
 void GUI::anpassen() {
-    // Logik zur Anpassung des Haustiers
-    qDebug() << "Haustier angepasst.";
+    QMessageBox::information(this, "Anpassen", "Haustier angepasst.");
 }
 
 void GUI::kommunizieren() {
-    // Logik zur Kommunikation mit dem Haustier
-    qDebug() << "Mit Haustier kommuniziert.";
+    QMessageBox::information(this, "Kommunizieren", "Haustier kommuniziert.");
 }
 
 void GUI::updatePetStatus() {

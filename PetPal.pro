@@ -1,4 +1,4 @@
-QT += core gui widgets network
+QT += core gui widgets network quick
 
 CONFIG += c++17
 
@@ -27,11 +27,13 @@ HEADERS += \\
     include/Pet.h \\
     include/WeatherAPI.h
 
-# Add UI files
-FORMS += \\
-    ui/PetPal.ui \\
-    ui/MainWindow.ui \\
-    ui/MainScreen.ui
+# Add qml files
+RESOURCES += \\
+    Main.qml \\
+    Erstellungsbildschirm.qml \\
+    Hauptbildschirm.qml \\
+    Interaktionsbildschirm.qml \\
+    WeatherAPI.qml
 
 # Add additional include directories
 INCLUDEPATH += include
