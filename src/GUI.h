@@ -2,6 +2,10 @@
 #define GUI_H
 
 #include <QWidget>
+#include <QStackedWidget>
+#include <QLabel>
+#include "WeatherAPI.h"
+#include "Pet.h"
 
 class GUI : public QWidget {
     Q_OBJECT
@@ -10,13 +14,8 @@ public:
     GUI(QWidget *parent = nullptr);
     ~GUI();
 
-    void zeigeHaustierStatus(const class Haustier& haustier);
-    void zeigeHauptbildschirm();
-    void zeigeAnpassungsbildschirm();
-    void zeigeTrainingsbildschirm();
-    void zeigeKommunikationsbildschirm();
-
 private slots:
+    void onWeatherDataReceived(const QString &weather);  // Methode deklariert
     void erstelleNeuesHaustier();
     void ladeGespeichertesHaustier();
     void fuettern();
@@ -25,6 +24,22 @@ private slots:
     void speichern();
     void anpassen();
     void kommunizieren();
+
+private:
+    void setupMainMenu();
+    void setupPetScreen();
+    void updatePetStatus();
+
+    WeatherAPI *weatherAPI;
+    Pet *currentPet;
+    QStackedWidget *stackedWidget;
+    QWidget *mainMenu;
+    QWidget *petScreen;
+    QLabel *petNameLabel;
+    QLabel *petSpeciesLabel;
+    QLabel *petHungerLabel;
+    QLabel *petHappinessLabel;
+    QLabel *petHealthLabel;
 };
 
 #endif // GUI_H

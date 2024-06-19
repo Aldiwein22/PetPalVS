@@ -6,19 +6,18 @@
 class Pet {
 public:
     Pet(const QString &name, const QString &species);
-
     QString getName() const;
     QString getSpecies() const;
     int getHunger() const;
     int getHappiness() const;
     int getHealth() const;
-
     void feed();
     void pet();
     void train();
     void saveStatus();
-    void loadStatus();
+    void loadStatus(const QString &fileName);
     void updateEmotionalState();
+    void adjustMoodBasedOnWeather(const QString &weather);
 
 private:
     QString name;
@@ -26,6 +25,7 @@ private:
     int hunger;
     int happiness;
     int health;
+    QString currentWeather;
 };
 
 #endif // PET_H

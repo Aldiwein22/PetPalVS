@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(PetPal LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# set(CMAKE_PREFIX_PATH "c:/Qt/6.7.1/mingw_64")
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -13,8 +12,9 @@ set(Vulkan_INCLUDE_DIR "C:/VulkanSDK/1.3.283.0/Include")
 set(CMAKE_PREFIX_PATH "C:/Qt/Tools/CMake_64/bin")
 set(QT_DIR "C:/Qt/6.7.1/mingw_64/lib/cmake/Qt6")
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Network)
 
 include_directories(include)
 aux_source_directory(./src SRCS)
@@ -35,6 +35,8 @@ set(PROJECT_SOURCES
         MainScreen.ui
         Pet.h
         Pet.cpp
+        WeatherAPI.h
+        WeatherAPI.cpp
         main.cpp
 )
 
@@ -43,6 +45,6 @@ add_executable(${PROJECT_NAME} WIN32 ${SRCS})
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network)
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
